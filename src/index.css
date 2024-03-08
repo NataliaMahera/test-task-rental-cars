@@ -1,36 +1,22 @@
-body {
-  /* background-image: url('./assets/background.png'); */
-  background-size: auto 100%;
-  background-position: center center;
-  background-repeat: no-repeat;
-  font-family: 'Roboto', sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Manrope', sans-serif;
   font-weight: 400;
-  font-style: normal;
-  color: #111111;
-  width: 100%;
-  height: 100vh;
-  margin: 0;
+  background-color: #fff;
+  color: #0a0a11;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin-top: 0;
+
+.descItem {
+  @apply after:content-['|'] after:ml-[6px] after:text-after-desc-element;
 }
-a {
-  text-decoration: none;
+
+.descWrap {
+  @apply mt-[9px] flex flex-row flex-wrap gap-x-[6px] text-[12px] leading-[1.5] font-normal text-desc-text-color;
 }
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-img {
-  display: block;
-}
-button {
-  cursor: pointer;
+
+.button {
+  @apply font-semibold text-[14px] leading-[1.43] mt-[28px] w-full py-[12px] rounded-[12px] bg-accent-color text-btn-text-color hover:bg-accent-hover-color focus:outline-none focus:ring transition-colors;
 }
