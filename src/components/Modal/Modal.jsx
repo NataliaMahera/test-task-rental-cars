@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { closeModal } from '../../redux/modal/modalReduser';
-import css from './Modal.module.css';
 
 const Modal = () => {
   //   const modalData = useSelector(selectModalData);
