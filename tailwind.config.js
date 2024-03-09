@@ -28,6 +28,9 @@ export default {
       'accent-hover-color': ' #0b44cd',
       'background-img': ' #f3f3f2',
       'background-img-gr': 'rgba(18, 20, 23, 0.5)',
+      'background-btn-modal': '#f9f9f9',
+      'modal-text-color': '#363535',
+      stroke: 'rgba(255, 255, 255, 0.8)',
       'background-img-gradient':
         'linear-gradient(180deg, rgba(18, 20, 23, 0.5) 0%, rgba(18, 20, 23, 0.5) 100%)',
     },

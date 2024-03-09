@@ -3,7 +3,7 @@ import { LinkHeaderNav } from '../ReUseComponents/Buttons/Buttons';
 
 const Header = () => {
   return (
-    <header className="container flex py-[20px] justify-center items-center border-after-desc-element border-b-[1px]">
+    <header className="container flex py-[25px] justify-center items-center border-after-desc-element border-b-[1px]">
       <div></div>
       <nav className="">
         <ul className="flex gap-x-[40px]">
