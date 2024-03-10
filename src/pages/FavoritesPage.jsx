@@ -9,7 +9,7 @@ const FavoritesPage = () => {
   const favoriteItems = useSelector(selectFavorites);
 
   return (
-    <section className="container pt-[100px]">
+    <section className="pt-[100px]">
       {favoriteItems.length > 0 ? (
         <CatalogList dataCatalog={favoriteItems} />
       ) : (
