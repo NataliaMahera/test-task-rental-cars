@@ -31,6 +31,8 @@ export default {
       'background-btn-modal': '#f9f9f9',
       'modal-text-color': '#363535',
       'stroke-color': 'rgba(255, 255, 255, 0.8)',
+      'background-input-color': '#f7f7fb',
+      'label-color': '#8a8a89',
     },
   },
   plugins: [],

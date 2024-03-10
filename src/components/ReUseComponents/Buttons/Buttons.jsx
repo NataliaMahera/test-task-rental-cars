@@ -86,3 +86,15 @@ export const ToggleFavoritesDeleteButton = ({ onClick, id }) => {
     </button>
   );
 };
+
+export const FilterButton = ({ type, onClick, children }) => {
+  return (
+    <button
+      className="hover:shadow-lg shadow-primary-text-button-color/50 font-semibold text-[14px] leading-[1.43] mt-[24px] py-[14px] px-[44px] rounded-[12px] bg-accent-color text-btn-text-color hover:bg-accent-hover-color focus:outline-none transition-colors"
+      type={type}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+};
