@@ -2,7 +2,11 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'home-page': "url('assets/img/image.jpg')",
+      },
+    },
     container: {
       center: true,
       padding: {

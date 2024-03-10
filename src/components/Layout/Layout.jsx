@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <div className="min-h-[78vh]">
+      <div className="min-h-[70vh]">
         <Suspense fallback={<Loader />}>
           <main>{children}</main>
         </Suspense>

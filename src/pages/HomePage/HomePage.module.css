@@ -1,0 +1,10 @@
+.imgHero {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  height: 76vh;
+  background-image: url('../../assets/img/image.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
