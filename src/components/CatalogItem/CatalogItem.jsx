@@ -1,16 +1,38 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../redux/modal/modalReduser';
-import { selectIsOpenModal } from '../../redux/modal/modalSelectors';
-import { LearnMoreButton } from '../ReUseComponents/Buttons/Buttons';
-import FavoriteIcon from '../FavoriteIcon/FavoriteIconBtn';
-import Modal from '../Modal/Modal';
+import {
+  LearnMoreButton,
+  ToggleFavoritesButton,
+  ToggleFavoritesDeleteButton,
+} from '../ReUseComponents/Buttons/Buttons';
 import defaultImg from '../../assets/img/blue-car-speed-motion-stretch-style.jpg';
+import {
+  addToFavorites,
+  deleteFromFavorites,
+} from '../../redux/favorites/favoritesReducer';
+import { selectFavorites } from '../../redux/favorites/favoritesSelectors';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const CatalogItem = ({ data }) => {
-  const isOpenModal = useSelector(selectIsOpenModal);
+  const favorites = useSelector(selectFavorites);
   const dispatch = useDispatch();
 
+  const handleDeleteFromFavorite = () => {
+    dispatch(deleteFromFavorites(data));
+    Notify.success(`${data.make} successfully REMOVED from favorite list`, {
+      timeout: 1500,
+    });
+  };
+
+  const handleAddToFavorite = () => {
+    dispatch(addToFavorites(data));
+    Notify.success(`${data.make} successfully ADDED to favorite list`, {
+      timeout: 1500,
+    });
+  };
+
   const {
+    id,
     year,
     make,
     model,
@@ -21,17 +43,24 @@ const CatalogItem = ({ data }) => {
     rentalCompany,
     address,
     mileage,
-  } = data;
+  } = data || {};
 
   return (
-    <li className="relative w-[268px] mx-auto">
-      <FavoriteIcon />
-      <img
-        src={img ? img : defaultImg}
-        alt="car"
-        className=" hover:scale-[1.1] transition h-[268px] rounded-[14px] w-full object-cover bg-after-desc-element"
-      />
-      <div className="titleContainer flex justify-between mt-[14px]">
+    <li className="w-[268px] mx-auto">
+      <div className="relative">
+        {favorites.some((item) => item.id === id) ? (
+          <ToggleFavoritesDeleteButton onClick={handleDeleteFromFavorite} />
+        ) : (
+          <ToggleFavoritesButton onClick={handleAddToFavorite} />
+        )}
+
+        <img
+          src={img ? img : defaultImg}
+          alt={make}
+          className="h-[268px] rounded-[14px] w-full object-cover bg-after-desc-element"
+        />
+      </div>
+      <div className="flex justify-between mt-[14px]">
         <h3 className="text-[16px] leading-[1.5] font-medium text-primary-text-color">
           {make} <span className="text-accent-color">{model}</span>
           <span className="text-primary-text-color">,</span> {year}
@@ -50,7 +79,6 @@ const CatalogItem = ({ data }) => {
       <LearnMoreButton onClick={() => dispatch(openModal(data))}>
         Learn more
       </LearnMoreButton>
-      {isOpenModal && <Modal />}
     </li>
   );
 };

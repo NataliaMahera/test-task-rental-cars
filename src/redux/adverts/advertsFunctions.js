@@ -5,7 +5,7 @@ export const handlePending = (state) => {
 export const handleFulfilledGet = (state, { payload }) => {
   state.isLoading = false;
   state.error = null;
-  state.advertItems = payload;
+  state.advertItems = [...state.advertItems, ...payload];
 };
 
 export const handleRejected = (state, { payload }) => {

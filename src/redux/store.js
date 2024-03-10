@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage';
 import {
   persistStore,
   FLUSH,
@@ -10,9 +11,20 @@ import {
 } from 'redux-persist';
 import { advertsReducer } from './adverts/advertsReduser';
 import { modalReducer } from './modal/modalReduser';
+import { favoritesReducer } from './favorites/favoritesReducer';
+import persistReducer from 'redux-persist/es/persistReducer';
+
+const favoritesConfig = {
+  key: 'favorites',
+  storage,
+};
 
 export const store = configureStore({
-  reducer: { adverts: advertsReducer, modal: modalReducer },
+  reducer: {
+    adverts: advertsReducer,
+    modal: modalReducer,
+    favorites: persistReducer(favoritesConfig, favoritesReducer),
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

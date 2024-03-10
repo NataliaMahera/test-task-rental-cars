@@ -1,19 +1,28 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../redux/modal/modalReduser';
-import { RentalCarButton, SvgButton } from '../ReUseComponents/Buttons/Buttons';
-import { selectModalData } from '../../redux/modal/modalSelectors';
-import sprite from '../../assets/icons/sprite.svg';
+import {
+  selectIsOpenModal,
+  selectModalData,
+} from '../../redux/modal/modalSelectors';
 import defaultImg from '../../assets/img/blue-car-speed-motion-stretch-style.jpg';
+import { CloseModalButton } from '../ReUseComponents/Buttons/Buttons';
 
 const Modal = () => {
   const modalData = useSelector(selectModalData);
+  const isOpenModal = useSelector(selectIsOpenModal);
   const dispatch = useDispatch();
+
+  const closeModalCallback = useCallback(() => {
+    if (isOpenModal) {
+      dispatch(closeModal());
+    }
+  }, [dispatch, isOpenModal]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === 'Escape') {
-        dispatch(closeModal());
+        closeModalCallback();
       }
     };
 
@@ -24,13 +33,14 @@ const Modal = () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'auto';
     };
-  }, [dispatch]);
+  }, [closeModalCallback]);
 
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
-      dispatch(closeModal());
+      closeModalCallback();
     }
   };
+
   const {
     id,
     make,
@@ -47,19 +57,18 @@ const Modal = () => {
     rentalConditions,
     mileage,
     rentalPrice,
-  } = modalData;
+  } = modalData || {};
+
+  const rentalConditionsParts = rentalConditions.split('\n');
+  const age = rentalConditionsParts[0].split(' ').slice(2, 3);
 
   return (
     <div
       onClick={handleOverlayClick}
-      className="fixed bg-after-desc-element opacity-20 overflow-x-hidden overflow-y-auto left-0 top-0 w-full h-full z-[100]"
+      className="fixed bg-background-img-gr overflow-x-hidden overflow-y-auto left-0 top-0 w-full h-full z-[100]"
     >
       <div className="absolute w-[541px] bg-btn-text-color top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-[24px] flex flex-col p-[40px]">
-        <SvgButton onClick={() => dispatch(closeModal())}>
-          <svg className="absolute top-[16px] right-[16px] stroke-[1.8px] stroke-primary-text-color w-[24px] h-[24px]">
-            <use href={sprite + '#icon-close'}></use>
-          </svg>
-        </SvgButton>
+        <CloseModalButton onClick={closeModalCallback} />
         <img
           src={img ? img : defaultImg}
           alt="car"
@@ -104,7 +113,7 @@ const Modal = () => {
         <ul className="mt-[8px] flex flex-wrap gap-[8px] font-normal text-[12px] leading-[1.5] text-modal-text-color">
           <li className="block px-[7px] py-[10px] rounded-[35px] bg-background-btn-modal ">
             Minimum age:{' '}
-            <span className="font-semibold text-accent-color">{25}</span>
+            <span className="font-semibold text-accent-color">{age}</span>
           </li>
           <li className="px-[7px] py-[10px] rounded-[35px] bg-background-btn-modal">
             {rentalConditions.split('\n')[1]}
@@ -125,13 +134,12 @@ const Modal = () => {
             </span>
           </li>
         </ul>
-        <RentalCarButton
-          onClick={() => {
-            window.location.href = 'tel:+380730000000';
-          }}
+        <a
+          className="w-[168px] hover:shadow-lg shadow-primary-text-button-color/50 font-semibold text-[14px] leading-[1.43] mt-[24px] py-[12px] px-[50px] rounded-[12px] bg-accent-color text-btn-text-color hover:bg-accent-hover-color focus:outline-none focus:ring transition-colors"
+          href="tel:+380730000000"
         >
           Rental car
-        </RentalCarButton>
+        </a>
       </div>
     </div>
   );

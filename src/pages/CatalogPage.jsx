@@ -8,25 +8,26 @@ import { selectAdverts } from '../redux/adverts/advertsSelectors';
 const CatalogPage = () => {
   const adverts = useSelector(selectAdverts);
   const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(2);
+  const advLength = adverts.length > 0;
 
   useEffect(() => {
-    dispatch(getAllAdvertsThunk(currentPage));
-  }, [dispatch, currentPage]);
+    if (advLength) return;
+    dispatch(getAllAdvertsThunk());
+  }, [advLength, dispatch]);
 
   const onLoadMore = () => {
     setCurrentPage((prevPage) => prevPage + 1);
+    dispatch(getAllAdvertsThunk(currentPage));
   };
 
-  console.log(adverts);
-
   return (
-    <>
-      <CatalogList />
-      {adverts.length >= 12 && (
-        <LoadMoreButton onClick={onLoadMore}>Load more</LoadMoreButton>
+    <section>
+      <CatalogList dataCatalog={adverts} />
+      {adverts.length > 0 && adverts.length % 12 === 0 && (
+        <LoadMoreButton onClick={onLoadMore} />
       )}
-    </>
+    </section>
   );
 };
 
