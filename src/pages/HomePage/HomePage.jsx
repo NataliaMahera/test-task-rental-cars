@@ -5,7 +5,7 @@ const HomePage = () => {
   return (
     <section>
       <div className={css.imgHero}>
-        <h1 className="text-btn-text-color pt-[55px] text-center text-[30px] leading-[1.5] font-bold pb-[30px]">
+        <h1 className="text-btn-text-color pt-[25px] md:pt-[55px]  text-center text-[30px] leading-[1.5] font-bold pb-[30px]">
           Discover the world on wheels with our car rental service.
         </h1>
         <Link

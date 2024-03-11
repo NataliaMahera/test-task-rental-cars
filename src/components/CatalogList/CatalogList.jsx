@@ -9,7 +9,7 @@ const CatalogList = ({ dataCatalog }) => {
 
   return (
     <section className="container pt-[50px] pb-[100px]">
-      <ul className="grid md:grid-cols-2 md:gap-x-[25px] md:gap-y-[40px] lg:grid-cols-4 lg:gap-x-[29px] lg:gap-y-[50px] mx-auto">
+      <ul className="grid gap-y-[40px] md:grid-cols-2 md:gap-x-[25px] lg:grid-cols-4 lg:gap-x-[29px] lg:gap-y-[50px] mx-auto">
         {dataCatalog.map((data) => {
           const id = nanoid();
           return <CatalogItem key={id} data={data} />;

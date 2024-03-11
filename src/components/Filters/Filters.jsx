@@ -68,97 +68,101 @@ const Filters = ({ setFilteredAdv }) => {
   return (
     <section className="container flex pt-[50px] justify-center ">
       <FilterForm
-        className="flex gap-x-[18px] items-end"
+        className="flex items-center md:gap-x-[18px] flex-col md:flex-row md:items-end"
         onSubmit={handleSubmit}
       >
-        <div className="relative flex flex-col justify-center">
-          <label
-            className="text-[14px] leading-[1.29] font-medium text-label-color mb-[8px]"
-            htmlFor="brand"
-          >
-            Car brand
-          </label>
-          <select
-            className="appearance-none cursor-pointer text-[18px] leading-[1.11] text-primary-text-color font-medium outline-none h-[48px] w-[224px] rounded-[14px] px-[18px] bg-background-input-color"
-            name="brand"
-            value={selectedValue.brand}
-            id="brand"
-            onChange={handleChange}
-            onFocus={() => {
-              setFokusBrand(true);
-            }}
-            onBlur={() => {
-              setFokusBrand(false);
-            }}
-          >
-            <option className="rounded-[14px]" value="default">
-              Enter the text
-            </option>
-            {CAR_BRAND.map((brand) => {
-              const id = nanoid();
-              return (
-                <option className="rounded-md" key={id} value={brand}>
-                  {brand}
-                </option>
-              );
-            })}
-          </select>
-          {focusBrand ? (
-            <ArrowSvgDown className="arrow" />
-          ) : (
-            <ArrowSvgUp className="arrow" />
-          )}
-        </div>
-
-        <div className="relative flex flex-col justify-center">
-          <label
-            className="text-[14px] leading-[1.29] font-medium text-label-color mb-[8px]"
-            htmlFor="brand"
-          >
-            Price/ 1 hour
-          </label>
-          <select
-            className="appearance-none cursor-pointer text-[18px] leading-[1.11] text-primary-text-color font-medium outline-none h-[48px] w-[125px] rounded-[14px] px-[18px] bg-background-input-color"
-            value={selectedValue.price}
-            name="price"
-            id="brand"
-            onChange={handleChange}
-            onFocus={() => {
-              setFokusPrice(true);
-            }}
-            onBlur={() => {
-              setFokusPrice(false);
-            }}
-          >
-            <option
-              className="text-[16px] leading-[1.25] text-after-desc-element rounded-[14px]"
-              value="default"
+        <div className="flex flex-row gap-x-[10px] md:gap-x-[18px]">
+          <div className="relative flex flex-col justify-center">
+            <label
+              className="text-[14px] leading-[1.29] font-medium text-label-color mb-[8px]"
+              htmlFor="brand"
             >
-              To $
-            </option>
-            {PRICE_HOUR.map((price) => {
-              const id = nanoid();
-              return (
-                <option
-                  className="rounded-md text-[16px] leading-[1.25] text-after-desc-element"
-                  key={id}
-                  value={price}
-                >
-                  {price}
-                </option>
-              );
-            })}
-          </select>
-          {focusPrice ? (
-            <ArrowSvgDown className="arrow" />
-          ) : (
-            <ArrowSvgUp className="arrow" />
-          )}
+              Car brand
+            </label>
+            <select
+              className="appearance-none cursor-pointer text-[18px] leading-[1.11] text-primary-text-color font-medium outline-none h-[48px] w-[185px] md:w-[224px] rounded-[14px] px-[18px] bg-background-input-color"
+              name="brand"
+              value={selectedValue.brand}
+              id="brand"
+              onChange={handleChange}
+              onFocus={() => {
+                setFokusBrand(true);
+              }}
+              onBlur={() => {
+                setFokusBrand(false);
+              }}
+            >
+              <option className="rounded-[14px]" value="default">
+                Enter the text
+              </option>
+              {CAR_BRAND.map((brand) => {
+                const id = nanoid();
+                return (
+                  <option className="rounded-md" key={id} value={brand}>
+                    {brand}
+                  </option>
+                );
+              })}
+            </select>
+            {focusBrand ? (
+              <ArrowSvgDown className="arrow" />
+            ) : (
+              <ArrowSvgUp className="arrow" />
+            )}
+          </div>
+
+          <div className="relative flex flex-col justify-center">
+            <label
+              className="text-[14px] leading-[1.29] font-medium text-label-color mb-[8px]"
+              htmlFor="brand"
+            >
+              Price/ 1 hour
+            </label>
+            <select
+              className="appearance-none cursor-pointer text-[18px] leading-[1.11] text-primary-text-color font-medium outline-none h-[48px] w-[75px] md:w-[125px] rounded-[14px] px-[18px] bg-background-input-color"
+              value={selectedValue.price}
+              name="price"
+              id="brand"
+              onChange={handleChange}
+              onFocus={() => {
+                setFokusPrice(true);
+              }}
+              onBlur={() => {
+                setFokusPrice(false);
+              }}
+            >
+              <option
+                className="text-[16px] leading-[1.25] text-after-desc-element rounded-[14px]"
+                value="default"
+              >
+                To $
+              </option>
+              {PRICE_HOUR.map((price) => {
+                const id = nanoid();
+                return (
+                  <option
+                    className="rounded-md text-[16px] leading-[1.25] text-after-desc-element"
+                    key={id}
+                    value={price}
+                  >
+                    {price}
+                  </option>
+                );
+              })}
+            </select>
+            {focusPrice ? (
+              <ArrowSvgDown className="arrow" />
+            ) : (
+              <ArrowSvgUp className="arrow" />
+            )}
+          </div>
         </div>
-        <FilterButton type="submit">Search</FilterButton>
-        <FilterButton type="button" onClick={clearFilters}>
-          Clear
-        </FilterButton>
+        <div className="flex flex-row gap-x-[10px] md:gap-x-[18px]">
+          <FilterButton type="submit">Search</FilterButton>
+          <FilterButton type="button" onClick={clearFilters}>
+            Clear
+          </FilterButton>
+        </div>
       </FilterForm>
     </section>
   );
