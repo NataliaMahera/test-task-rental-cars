@@ -119,7 +119,7 @@ const Filters = ({ setFilteredAdv }) => {
               Price/ 1 hour
             </label>
             <select
-              className="appearance-none cursor-pointer text-[18px] leading-[1.11] text-primary-text-color font-medium outline-none h-[48px] w-[75px] md:w-[125px] rounded-[14px] px-[18px] bg-background-input-color"
+              className="appearance-none cursor-pointer text-[18px] leading-[1.11] text-primary-text-color font-medium outline-none h-[48px] w-[75px] md:w-[125px] rounded-[14px] px-[13px] md:px-[18px] bg-background-input-color"
               value={selectedValue.price}
               name="price"
               id="brand"
