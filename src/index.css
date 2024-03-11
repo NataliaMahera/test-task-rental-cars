@@ -22,3 +22,7 @@ body {
 .descWrap {
   @apply flex flex-row flex-wrap gap-x-[6px] text-[12px] leading-[1.5] font-normal text-desc-text-color;
 }
+
+.arrow {
+  @apply absolute bottom-[14px] right-[14px] cursor-pointer;
+}
