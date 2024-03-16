@@ -1,4 +1,4 @@
-import{u as y,r,a as N,j as e,C as F,P as S,F as g,n as f,b,c as E,g as v,d as B}from"./index-ed70fa99.js";import{C as P}from"./CatalogList-267fae48.js";const C=t=>t.adverts.advertItems,A=y.form`
+import{u as y,r,a as N,j as e,C as F,P as S,F as g,n as f,b,c as E,g as v,d as B}from"./index-22dc0ee7.js";import{C as P}from"./CatalogList-1815f4ef.js";const C=t=>t.adverts.advertItems,A=y.form`
   option {
     color: rgba(18, 20, 23, 0.2);
     font-weight: 500;
