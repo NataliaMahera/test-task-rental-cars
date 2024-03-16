@@ -10,7 +10,6 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { advertsReducer } from './adverts/advertsReduser';
-import { modalReducer } from './modal/modalReduser';
 import { favoritesReducer } from './favorites/favoritesReducer';
 import persistReducer from 'redux-persist/es/persistReducer';
 
@@ -22,7 +21,6 @@ const favoritesConfig = {
 export const store = configureStore({
   reducer: {
     adverts: advertsReducer,
-    modal: modalReducer,
     favorites: persistReducer(favoritesConfig, favoritesReducer),
   },
   middleware: (getDefaultMiddleware) =>

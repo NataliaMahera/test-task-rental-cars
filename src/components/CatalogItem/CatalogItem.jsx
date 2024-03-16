@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal } from '../../redux/modal/modalReduser';
 import {
   LearnMoreButton,
   ToggleFavoritesButton,
@@ -13,7 +12,7 @@ import {
 import { selectFavorites } from '../../redux/favorites/favoritesSelectors';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const CatalogItem = ({ data }) => {
+const CatalogItem = ({ data, openModal }) => {
   const favorites = useSelector(selectFavorites);
   const dispatch = useDispatch();
 
@@ -76,7 +75,7 @@ const CatalogItem = ({ data }) => {
         <li className="descItem">{mileage}</li>
         <li>{accessories[0]}</li>
       </ul>
-      <LearnMoreButton onClick={() => dispatch(openModal(data))}>
+      <LearnMoreButton onClick={() => openModal(data)}>
         Learn more
       </LearnMoreButton>
     </li>

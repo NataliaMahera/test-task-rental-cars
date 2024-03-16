@@ -1,23 +1,17 @@
 import { useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { closeModal } from '../../redux/modal/modalReduser';
-import {
-  selectIsOpenModal,
-  selectModalData,
-} from '../../redux/modal/modalSelectors';
 import defaultImg from '../../assets/img/blue-car-speed-motion-stretch-style.jpg';
 import { CloseModalButton } from '../ReUseComponents/Buttons/Buttons';
 
-const Modal = () => {
-  const modalData = useSelector(selectModalData);
-  const isOpenModal = useSelector(selectIsOpenModal);
-  const dispatch = useDispatch();
+const Modal = ({ closeModal, isOpenModal, modalData }) => {
+  // const modalData = useSelector(selectModalData);
+  // const isOpenModal = useSelector(selectIsOpenModal);
+  // const dispatch = useDispatch();
 
   const closeModalCallback = useCallback(() => {
     if (isOpenModal) {
-      dispatch(closeModal());
+      closeModal();
     }
-  }, [dispatch, isOpenModal]);
+  }, [closeModal, isOpenModal]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
