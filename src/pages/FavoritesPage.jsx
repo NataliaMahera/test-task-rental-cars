@@ -1,11 +1,9 @@
 import { useSelector } from 'react-redux';
 import { selectFavorites } from '../redux/favorites/favoritesSelectors';
-import { selectIsOpenModal } from '../redux/modal/modalSelectors';
 import Modal from '../components/Modal/Modal';
 import CatalogList from '../components/CatalogList/CatalogList';
 
-const FavoritesPage = () => {
-  const isOpenModal = useSelector(selectIsOpenModal);
+const FavoritesPage = ({ isOpenModal }) => {
   const favoriteItems = useSelector(selectFavorites);
 
   return (
